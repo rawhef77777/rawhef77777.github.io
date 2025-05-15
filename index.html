@@ -1,33 +1,232 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STARBUD SHOP - Город</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Transfer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, #1e3a8a, #0f172a);
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, #38bdf8, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #60a5fa;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    li {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    li:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(135deg, #334155, #1e293b);
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4);
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .cta p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 24px;
+      border-radius: 50px;
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .cta a:hover {
+      transform: translateY(-4px);
+    }
+
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .icons img {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .icons img:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .cta a {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+      }
+
+      .icons img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      ul {
+        grid-template-columns: 1fr;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="bg-leaves"></div>
-    <div class="container">
-        <h1>STARBUD SHOP</h1>
-        <p id="city-name">Выберите город</p>
 
-        <!-- Кнопки городов -->
-        <div class="cities">
-            <a href="city.html?city=Iziaslav" class="city">🏙 Изяслав</a>
-            <a href="city.html?city=Shepetivka" class="city">🏙 Клубівка</a>
-            <!-- Можно добавить другие города, просто добавив ссылки с соответствующими параметрами -->
-        </div>
+  <header>
+    <h1>QUANTUM TRANSFER</h1>
+    <p>Работа водителем в Европе — твой путь к успеху!</p>
+  </header>
 
-        <!-- Контакты -->
-        <div class="contacts">
-            <h2>ТВОЙ ДИЛЛЕР</h2>
-            <a href="https://t.me/Starbud_Boss" class="contact">💬 ОПЕРАТОР ↦</a>
-            <a href="https://t.me/Starbud_robot" class="contact">🤖 БОТ 24/7 ↦</a>
-            <a href="https://t.me/Starbud_reviews" class="contact">⭐ ОТЗЫВЫ ↦</a>
-        </div>
+  <section>
+    <h2>МЫ ГАРАНТИРУЕМ:</h2>
+    <ul>
+      <li>✅ Оплату от 1500€ за поездку и выше</li>
+      <li>✅ Расчет в конце каждой поездки</li>
+      <li>✅ Месячный доход от 25.000€</li>
+      <li>✅ Безопасные маршруты</li>
+      <li>✅ Предоставление жилья иногородним</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>СТРАНЫ РАБОТЫ:</h2>
+    <ul>
+      <li>📌 Польша 🇵🇱</li>
+      <li>📌 Литва 🇱🇹</li>
+      <li>📌 Латвия 🇱🇻</li>
+      <li>📌 Хорватия 🇭🇷</li>
+      <li>📌 Болгария 🇧🇬</li>
+      <li>📌 Венгрия 🇭🇺</li>
+      <li>📌 Греция 🇬🇷</li>
+      <li>📌 Румыния 🇷🇴</li>
+      <li>📌 Словения 🇸🇮</li>
+      <li>📌 Босния 🇧🇦</li>
+      <li>📌 Сербия 🇷🇸</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>ТРЕБОВАНИЯ К ВОДИТЕЛЮ:</h2>
+    <ul>
+      <li>✅ Наличие авто</li>
+    <li>✅ Дисциплина</li>
+      <li>✅ Стабильный доступ в интернет</li>
+      <li>✅ Умение пользоваться Google Maps</li>
+      <li>✅ Желание зарабатывать</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>ПРЕИМУЩЕСТВА РАБОТЫ С НАМИ:</h2>
+    <ul>
+      <li>💁‍♂️ Оплата в два этапа (Аванс + Расчет)</li>
+      <li>💁‍♀️ Свободный график</li>
+      <li>💁‍♂️ Месячный доход от 25.000€</li>
+      <li>💁‍♀️ Безопасные маршруты</li>
+      <li>💁‍♂️ Предоставление жилья иногородним</li>
+      <li>💁‍♀️ Проверенный работодатель</li>
+      <li>💁‍♂️ Любой класс авто подходит</li>
+      <li>💁‍♀️ Сопровождение на каждом этапе</li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <h2>ИНТЕРЕСУЕТ ВАКАНСИЯ?</h2>
+    <p>Правильный выбор!<br>Нажми на удобный мессенджер 🤝</p>
+
+    <div class="icons">
+      <a href="https://t.me/quantum_transportation" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram.png" alt="Telegram" />
+      </a>
+      <a href="https://wa.me/your_whatsapp" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" />
+      </a>
     </div>
 
-    <script src="city.js"></script>
+    <a href="#" class="cta-button">ОСТАВИТЬ ЗАЯВКУ</a>
+  </section>
+
 </body>
 </html>
