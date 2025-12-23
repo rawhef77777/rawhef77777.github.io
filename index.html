@@ -1,130 +1,136 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EasyCash — Виведення коштів</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Manrope', sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .form-box {
-      background: #111;
-      padding: 30px;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
-      animation: fadeIn 0.6s ease;
-    }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 24px;
-      color: #facc15;
-      text-align: center;
-    }
-    label {
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: block;
-      margin-top: 16px;
-    }
-    input {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #222;
-      color: #fff;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 28px;
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      background: #facc15;
-      color: #111;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    button:hover {
-      background: #eab308;
-    }
-    .success-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .popup-content {
-      background: #1f1f1f;
-      padding: 30px;
-      border-radius: 16px;
-      text-align: center;
-      max-width: 340px;
-      animation: fadeIn 0.4s ease;
-    }
-    .popup-content h2 {
-      color: #4ade80;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    .popup-content p {
-      font-size: 15px;
-      color: #ccc;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Вибір регіону — Світло UA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563eb;
+  --bg:#eef2f8;
+  --card:#fff;
+  --text:#1a1a1a;
+  --muted:#6b7280;
+}
+
+body{
+  margin:0;
+  font-family:Inter,Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+header{
+  background:linear-gradient(120deg,#1e3a8a,var(--primary));
+  color:white;
+  padding:24px;
+  text-align:center;
+  border-bottom-left-radius:16px;
+  border-bottom-right-radius:16px;
+}
+
+header h1{margin:0;font-size:26px;}
+header p{margin:4px 0;font-size:15px;}
+
+.container{
+  max-width:600px;
+  margin:40px auto;
+  padding:0 16px;
+}
+
+.card{
+  background:var(--card);
+  padding:26px;
+  border-radius:18px;
+  box-shadow:0 24px 48px rgba(0,0,0,.08);
+}
+
+label{display:block;margin-top:16px;font-weight:600;}
+select,input{
+  width:100%;
+  margin-top:8px;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  margin-top:24px;
+  padding:14px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+button:hover{opacity:.9;}
+
+.footer{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  margin-top:20px;
+}
+</style>
 </head>
+
 <body>
-  <div class="form-box">
-    <h1>Виведення коштів</h1>
-    <form id="withdrawForm" onsubmit="handleSubmit(event)">
-      <label for="name">ПІБ</label>
-      <input type="text" id="name" required>
+<header>
+  <h1>Світло UA</h1>
+  <p>Виберіть область та населений пункт</p>
+</header>
 
-      <label for="iban">Номер картки / IBAN</label>
-      <input type="text" id="iban" required>
+<div class="container">
+  <div class="card">
+    <label>Область</label>
+    <select id="region" onchange="showCityInput()">
+      <option value="">— Оберіть область —</option>
+    </select>
 
-      <label for="email">Email для підтвердження</label>
-      <input type="email" id="email" required>
-
-      <button type="submit">📤 Подати заявку</button>
-    </form>
-  </div>
-
-  <div class="success-popup" id="successPopup" style="display: none;">
-    <div class="popup-content">
-      <h2>✅ Заявка прийнята!</h2>
-      <p>Очікуйте на виплату протягом 14 робочих днів.</p>
+    <div id="cityInput" style="display:none;">
+      <label>Місто / село</label>
+      <input type="text" id="city" placeholder="Введіть населений пункт">
     </div>
+
+    <button onclick="goToCity()">Показати графік</button>
   </div>
 
-  <script>
-    function handleSubmit(e) {
-      e.preventDefault();
-      document.getElementById("withdrawForm").style.display = "none";
-      document.getElementById("successPopup").style.display = "flex";
-    }
-  </script>
+  <div class="footer">Актуальність графіка залежить від даних операторів мережі.</div>
+</div>
+
+<script>
+const regions = [
+  "Вінницька","Волинська","Дніпропетровська","Донецька","Житомирська",
+  "Закарпатська","Запорізька","Івано‑Франківська","Київська",
+  "Кіровоградська","Львівська","Миколаївська","Одеська","Полтавська",
+  "Рівненська","Сумська","Тернопільська","Харківська","Херсонська",
+  "Хмельницька","Черкаська","Чернівецька","Чернігівська"
+];
+
+const regionSelect = document.getElementById("region");
+regions.forEach(r=>{
+  const o=document.createElement("option");
+  o.value=r; 
+  o.textContent=r+" область"; 
+  regionSelect.appendChild(o);
+});
+
+function showCityInput(){
+  document.getElementById("cityInput").style.display = regionSelect.value ? "block" : "none";
+}
+
+function goToCity(){
+  const region = regionSelect.value;
+  const city = document.getElementById("city").value.trim();
+  if(!region || !city) return alert("Виберіть область і введіть населений пункт");
+  window.location.href = `city.html?region=${encodeURIComponent(region)}&city=${encodeURIComponent(city)}`;
+}
+</script>
+
 </body>
 </html>
