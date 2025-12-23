@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Графік світла — Світло UA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563eb;
+  --bg:#f7fafc;
+  --card:#fff;
+  --text:#1a1a1a;
+  --on:#16a34a;
+  --warn:#facc15;
+  --off:#dc2626;
+}
+
+body{
+  margin:0;
+  font-family:Inter,Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+header{
+  padding:20px;
+  text-align:center;
+  background:var(--primary);
+  color:white;
+  border-bottom-left-radius:16px;
+  border-bottom-right-radius:16px;
+}
+
+.container{
+  max-width:740px;
+  margin:30px auto;
+  padding:0 16px;
+}
+
+.card{
+  background:var(--card);
+  padding:32px;
+  border-radius:20px;
+  box-shadow:0 28px 60px rgba(0,0,0,.08);
+  transition:transform .2s;
+}
+
+.card:hover{transform:translateY(-2px)}
+
+h2{margin:0 0 14px;font-size:24px;font-weight:700; text-align:center;}
+
+/* ===== TABLE ===== */
+.table-wrap{overflow-x:auto; margin-top:20px;}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  text-align:center;
+  font-size:14px;
+}
+
+th,td{
+  padding:14px;
+  border:1px solid #e2e8f0;
+}
+
+th{
+  background:#e2e8f0;
+  font-weight:600;
+}
+
+tr:nth-child(even) td{background:#f8fafc;}
+tr:hover td{filter:brightness(.96);}
+
+td.on{background:var(--on); color:white; font-weight:600;}
+td.warn{background:var(--warn); color:#4b2700; font-weight:600;}
+td.off{background:var(--off); color:white; font-weight:600;}
+
+.legend{
+  margin-top:20px;
+  text-align:center;
+  font-size:13px;
+}
+
+.legend span{display:inline-block;margin-right:18px;}
+.legend .dot{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin-right:6px;
+}
+</style>
+</head>
+<body>
+
+<header><h2 id="title"></h2></header>
+
+<div class="container">
+  <div class="card">
+    <div class="table-wrap">
+      <table id="tbl"></table>
+    </div>
+
+    <div class="legend">
+      <span><div class="dot" style="background:var(--on)"></div>Є світло</span>
+      <span><div class="dot" style="background:var(--warn)"></div>Можливе обмеження</span>
+      <span><div class="dot" style="background:var(--off)"></div>Відключено</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// Получаем параметры
+const params = new URLSearchParams(location.search);
+const region = params.get("region");
+const city = params.get("city");
+document.getElementById("title").textContent = `${city}, ${region}`;
+
+// Графики для разных областей (примерные, можно заменить на реальные)
+const areasSchedule = {
+  "Хмельницька": ["on","warn","off","warn","on","off"],
+  "Херсонська": ["warn","off","on","on","warn","off"],
+  "Київська": ["on","on","warn","off","on","warn"],
+  "Львівська": ["off","warn","on","on","warn","on"],
+  "Одеська": ["warn","on","off","warn","on","off"]
+};
+
+const hours = ["00–04","04–08","08–12","12–16","16–20","20–24"];
+const level = areasSchedule[region.split(" ")[0]] || ["on","warn","off","warn","on","off"];
+
+const tbl = document.getElementById("tbl");
+let head = "<tr>";
+hours.forEach(h=>head+=`<th>${h}</th>`);
+head+="</tr>";
+tbl.innerHTML = head;
+
+let row = "<tr>";
+level.forEach(l=>row+=`<td class="${l}">${l==="on"?"Є":l==="warn"?"Обмеж":"Вимкн"}</td>`);
+row+="</tr>";
+tbl.innerHTML += row;
+</script>
+
+</body>
+</html>
